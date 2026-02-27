@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup src/index.ts --format esm --dts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "dependencies": {
+    "hono": "^4.7.4",
+    "@hono/node-server": "^1.13.7",
+    "@hono/zod-validator": "^0.4.3",
+    "@anthropic-ai/sdk": "^0.39.0",
+    "drizzle-orm": "^0.40.1",
+    "@neondatabase/serverless": "^0.10.4",
+    "zod": "^3.24.2",
+    "jose": "^5.10.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.13.10",
+    "drizzle-kit": "^0.30.4",
+    "tsx": "^4.19.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  }
+}
