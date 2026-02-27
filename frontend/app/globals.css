@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ─── DESIGN TOKENS ──────────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --color-primary: #FF8C42;
+  --color-primary-light: #FFECD2;
+  --color-primary-dark: #E07030;
+  --color-secondary: #FFD166;
+  --color-secondary-light: #FFF9E6;
+  --color-accent: #EF476F;
+  --color-accent-light: #FFE5EC;
+
+  /* Backgrounds */
+  --color-bg: #FFF4E6;
+  --color-card: #FFFFFF;
+  --color-surface: #FFFAF5;
+
+  /* Text */
+  --color-text: #3A2D28;
+  --color-text-secondary: #5C4A42;
+  --color-text-muted: #7A6A64;
+  --color-text-disabled: #B5A39C;
+  --color-text-inverse: #FFFFFF;
+
+  /* Borders */
+  --color-border-light: #FFECD2;
+  --color-border-mid: #DDD0C8;
+  --color-border-strong: #C97D4E;
+
+  /* Extended */
+  --color-peach: #FFECD2;
+  --color-terracotta: #C97D4E;
+  --color-amber: #F4A261;
+  --color-light-brown: #D4A373;
+  --color-warm-linen: #FAEDCD;
+
+  /* Semantic */
+  --color-success: #52B788;
+  --color-warning: #FFB703;
+  --color-error: #EF476F;
+
+  /* Gradients */
+  --gradient-sunrise: linear-gradient(135deg, #FF8C42 0%, #FFD166 50%, #FFECD2 100%);
+  --gradient-latte: linear-gradient(135deg, #FFF4E6 0%, #FAEDCD 50%, #D4A373 100%);
+  --gradient-hero: linear-gradient(160deg, #FF8C42 0%, #FFD166 40%, #FFF4E6 100%);
+  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #FFF4E6 100%);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(58, 45, 40, 0.08);
+  --shadow-md: 0 4px 12px rgba(58, 45, 40, 0.10);
+  --shadow-lg: 0 8px 24px rgba(58, 45, 40, 0.12);
+  --shadow-xl: 0 16px 48px rgba(58, 45, 40, 0.15);
+  --shadow-glow: 0 0 0 4px rgba(255, 140, 66, 0.25);
+  --shadow-warm: 0 8px 32px rgba(255, 140, 66, 0.20);
+  --shadow-card: 0 2px 16px rgba(58, 45, 40, 0.08);
+
+  /* Easings */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ─── DARK MODE ──────────────────────────────────────────────────── */
+[data-theme="cozy-dark"] {
+  --color-bg: #1A1008;
+  --color-card: #2D1B0E;
+  --color-surface: #3D2B1A;
+  --color-text: #FFF4E6;
+  --color-text-secondary: #E8D5C0;
+  --color-text-muted: #A89080;
+  --color-border-light: #5C3D20;
+  --color-border-mid: #6B4A2A;
+  --color-primary: #FF9F5A;
+  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── PASTEL MODE ────────────────────────────────────────────────── */
+[data-theme="soft-pastel"] {
+  --color-bg: #FFF9F5;
+  --color-primary: #FFB085;
+  --color-secondary: #FFE5A0;
+  --color-accent: #F9A7B9;
+  --color-text: #6B5B4E;
+  --color-text-muted: #9E8C83;
+}
+
+/* ─── GLOBAL ─────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+@keyframes avatarBreath {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(1.03) translateY(-2px); }
+}
+
+@keyframes happyBounce {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(-12px); }
+  40% { transform: translateY(0); }
+  55% { transform: translateY(-6px); }
+  70%, 100% { transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes typingDot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sunrisePulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* ─── UTILITY ────────────────────────────────────────────────────── */
+.animate-breath { animation: avatarBreath 3.5s ease-in-out infinite; }
+.animate-bounce-happy { animation: happyBounce 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+.animate-fade-in-up { animation: fadeInUp 0.4s ease-out both; }
+.animate-fade-in { animation: fadeIn 0.3s ease-out both; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-border-light) 25%, var(--color-peach) 50%, var(--color-border-light) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
