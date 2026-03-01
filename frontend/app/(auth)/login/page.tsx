@@ -100,14 +100,14 @@ export default function LoginPage() {
           </button>
         </div>
 
-        <WarmButton type="submit" disabled={isSubmitting} className="mt-2 w-full">
+        <WarmButton type="submit" variant="gold" disabled={isSubmitting} className="mt-2 w-full">
           {isSubmitting ? 'Signing in...' : 'Sign In'}
         </WarmButton>
       </form>
 
       <p className="text-center text-sm mt-6" style={{ color: 'var(--color-text-muted)' }}>
         New to ChefMate?{' '}
-        <Link href="/signup" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
+        <Link href="/signup" style={{ color: 'var(--color-gold)', fontWeight: 600 }}>
           Create account
         </Link>
       </p>

@@ -120,14 +120,14 @@ export default function SignupPage() {
           {...register('confirmPassword')}
         />
 
-        <WarmButton type="submit" disabled={isSubmitting} className="mt-2 w-full">
+        <WarmButton type="submit" variant="gold" disabled={isSubmitting} className="mt-2 w-full">
           {isSubmitting ? 'Creating account...' : 'Create Account'}
         </WarmButton>
       </form>
 
       <p className="text-center text-sm mt-6" style={{ color: 'var(--color-text-muted)' }}>
         Already have an account?{' '}
-        <Link href="/login" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
+        <Link href="/login" style={{ color: 'var(--color-gold)', fontWeight: 600 }}>
           Sign in
         </Link>
       </p>
