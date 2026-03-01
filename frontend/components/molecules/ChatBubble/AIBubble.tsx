@@ -19,10 +19,12 @@ export function AIBubble({ content, recipes, isStreaming, timestamp }: AIBubbleP
         <div
           className="px-4 py-3 text-sm leading-relaxed"
           style={{
-            background: 'var(--color-bg)',
-            border: '1px solid rgba(255,140,66,0.15)',
+            background: 'var(--glass-bg)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid var(--glass-border)',
             borderRadius: '4px 20px 20px 20px',
-            boxShadow: 'var(--shadow-sm)',
+            boxShadow: 'var(--shadow-glass)',
             color: 'var(--color-text)',
             minWidth: '60px',
           }}

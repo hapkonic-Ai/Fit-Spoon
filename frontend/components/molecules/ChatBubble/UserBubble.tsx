@@ -11,9 +11,9 @@ export function UserBubble({ content, timestamp }: UserBubbleProps) {
       <div
         className="px-4 py-3 text-sm leading-relaxed text-white"
         style={{
-          background: 'linear-gradient(135deg, #FF8C42, #FFD166)',
+          background: 'var(--gradient-luxury)',
           borderRadius: '20px 4px 20px 20px',
-          boxShadow: '0 4px 16px rgba(255,140,66,0.25)',
+          boxShadow: 'var(--shadow-luxury)',
         }}
       >
         {content}
