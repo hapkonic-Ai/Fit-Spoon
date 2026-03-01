@@ -73,7 +73,7 @@ export function Complete({ userName }: CompleteProps) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <WarmButton className="w-full" onClick={() => router.push('/')}>
+        <WarmButton className="w-full" variant="gold" onClick={() => router.push('/')}>
           Enter ChefMate →
         </WarmButton>
         <p className="text-xs text-center mt-2" style={{ color: 'var(--color-text-muted)' }}>

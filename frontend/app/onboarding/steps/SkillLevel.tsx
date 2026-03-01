@@ -84,6 +84,7 @@ export function SkillLevel({ onNext, defaultValues }: SkillLevelProps) {
 
       <WarmButton
         className="w-full"
+        variant="gold"
         disabled={!selected}
         onClick={() => onNext({ skillLevel: selected })}
       >

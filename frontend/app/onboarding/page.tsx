@@ -93,18 +93,18 @@ export default function OnboardingPage() {
         <div className="px-6 pt-6">
           <div
             className="h-1.5 rounded-full overflow-hidden"
-            style={{ background: 'var(--color-border-light)' }}
+            style={{ background: 'rgba(212,168,83,0.15)' }}
           >
             <div
               className="h-full rounded-full transition-all duration-500"
-              style={{ width: `${progress}%`, background: 'var(--gradient-sunrise)' }}
+              style={{ width: `${progress}%`, background: 'var(--gradient-luxury)' }}
             />
           </div>
           <div className="flex justify-between mt-2">
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               Step {currentIndex} of {STEPS.length - 2}
             </span>
-            <span className="text-xs" style={{ color: 'var(--color-primary)' }}>
+            <span className="text-xs luxury-text font-semibold">
               {Math.round(progress)}% done
             </span>
           </div>
@@ -114,8 +114,7 @@ export default function OnboardingPage() {
       {/* Step content */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div
-          className="w-full max-w-md rounded-3xl p-8 shadow-xl"
-          style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-xl)' }}
+          className="w-full max-w-md rounded-3xl p-8 glass-card luxury-border"
         >
           <AnimatePresence mode="wait">
             {step === 'welcome' && (

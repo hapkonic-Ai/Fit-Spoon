@@ -68,6 +68,7 @@ export function CuisinePrefs({ onNext, defaultValues }: CuisinePrefsProps) {
 
       <WarmButton
         className="w-full"
+        variant="gold"
         disabled={selected.length === 0}
         onClick={() => onNext({ cuisines: selected })}
       >

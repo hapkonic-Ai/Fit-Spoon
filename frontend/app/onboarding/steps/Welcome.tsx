@@ -51,7 +51,7 @@ export function Welcome({ onNext, userName }: WelcomeProps) {
         ))}
       </div>
 
-      <WarmButton onClick={onNext} className="w-full mt-2">
+      <WarmButton onClick={onNext} variant="gold" className="w-full mt-2">
         Let's get started →
       </WarmButton>
     </motion.div>

@@ -84,6 +84,7 @@ export function DietaryPrefs({ onNext, defaultValues }: DietaryPrefsProps) {
 
       <WarmButton
         className="w-full"
+        variant="gold"
         onClick={() => onNext({ dietaryType: selectedDiet, allergies: selectedAllergies })}
       >
         Continue →

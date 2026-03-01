@@ -95,7 +95,7 @@ export function BasicInfo({ onNext, defaultValues }: BasicInfoProps) {
           />
         </div>
 
-        <WarmButton type="submit" className="w-full mt-2">
+        <WarmButton type="submit" variant="gold" className="w-full mt-2">
           Continue →
         </WarmButton>
       </form>
