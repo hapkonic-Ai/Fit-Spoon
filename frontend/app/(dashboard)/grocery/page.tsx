@@ -76,8 +76,8 @@ export default function GroceryPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1
-            className="text-2xl font-bold"
-            style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+            className="text-2xl font-bold luxury-text"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             Grocery List 🛒
           </h1>
@@ -108,8 +108,7 @@ export default function GroceryPage() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="rounded-2xl p-4 space-y-3"
-            style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-sm)' }}
+            className="glass-card luxury-border rounded-2xl p-4 space-y-3"
           >
             <WarmInput
               value={newItem}
@@ -125,7 +124,7 @@ export default function GroceryPage() {
                   onClick={() => setNewCategory(cat)}
                   className="px-2.5 py-1 rounded-full text-xs font-medium transition-all"
                   style={{
-                    background: newCategory === cat ? 'var(--color-primary)' : 'var(--color-bg)',
+                    background: newCategory === cat ? 'var(--color-gold)' : 'var(--color-bg)',
                     color: newCategory === cat ? 'white' : 'var(--color-text-muted)',
                   }}
                 >
@@ -154,13 +153,12 @@ export default function GroceryPage() {
         <motion.div key={category} layout className="space-y-2">
           <h2
             className="text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5"
-            style={{ color: 'var(--color-text-muted)' }}
+            style={{ color: 'var(--color-gold)' }}
           >
             {CATEGORY_EMOJIS[category]} {category}
           </h2>
           <div
-            className="rounded-2xl overflow-hidden"
-            style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-sm)' }}
+            className="glass-card rounded-2xl overflow-hidden"
           >
             <AnimatePresence>
               {catItems.map((item) => (
@@ -171,14 +169,14 @@ export default function GroceryPage() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className="flex items-center gap-3 px-4 py-3 border-b last:border-0"
-                  style={{ borderColor: 'var(--color-border-light)' }}
+                  style={{ borderColor: 'var(--glass-border)' }}
                 >
                   <button
                     onClick={() => toggleItem(item.id)}
                     className="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all"
                     style={{
-                      borderColor: item.checked ? 'var(--color-success)' : 'var(--color-border-mid)',
-                      background: item.checked ? 'var(--color-success)' : 'transparent',
+                      borderColor: item.checked ? 'var(--color-gold)' : 'var(--color-border-mid)',
+                      background: item.checked ? 'var(--color-gold)' : 'transparent',
                     }}
                     aria-label={item.checked ? `Uncheck ${item.name}` : `Check off ${item.name}`}
                     aria-pressed={item.checked}
@@ -207,11 +205,9 @@ export default function GroceryPage() {
       {items.some((i) => i.checked) && (
         <button
           onClick={clearChecked}
-          className="w-full py-2.5 rounded-2xl text-sm font-medium transition-all border"
+          className="glass-card w-full py-2.5 rounded-2xl text-sm font-medium transition-all"
           style={{
-            background: 'transparent',
             color: 'var(--color-text-muted)',
-            borderColor: 'var(--color-border-light)',
           }}
         >
           Clear checked items ({items.filter((i) => i.checked).length})

@@ -53,8 +53,8 @@ export default function MotivationPage() {
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
         <h1
-          className="text-2xl font-bold"
-          style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+          className="text-2xl font-bold luxury-text"
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           Daily Motivation ✨
         </h1>
@@ -84,8 +84,7 @@ export default function MotivationPage() {
 
       {/* Streak */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -98,7 +97,7 @@ export default function MotivationPage() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="text-5xl font-bold" style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+          <div className="text-5xl font-bold luxury-text" style={{ fontFamily: 'var(--font-display)' }}>
             {streakDays}
           </div>
           <div>
@@ -120,8 +119,9 @@ export default function MotivationPage() {
               key={i}
               className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-all"
               style={{
-                background: i < streakDays ? 'var(--color-primary)' : 'var(--color-bg)',
+                background: i < streakDays ? 'var(--color-gold)' : 'var(--color-bg)',
                 color: i < streakDays ? 'white' : 'var(--color-text-muted)',
+                boxShadow: i < streakDays ? '0 0 8px rgba(212,168,83,0.4)' : 'none',
               }}
               role="listitem"
               aria-label={i < streakDays ? `Day ${i + 1}: active` : `Day ${i + 1}: not active`}
@@ -134,13 +134,12 @@ export default function MotivationPage() {
 
       {/* Chef Tip */}
       <motion.div
-        className="rounded-3xl p-5"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-5"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
       >
-        <p className="text-xs font-medium mb-2" style={{ color: 'var(--color-primary)' }}>
+        <p className="text-xs font-medium mb-2" style={{ color: 'var(--color-gold)' }}>
           Chef Tip of the Day {todayTip.emoji}
         </p>
         <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>
@@ -150,8 +149,7 @@ export default function MotivationPage() {
 
       {/* Wellness Challenges */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -185,7 +183,7 @@ export default function MotivationPage() {
                 >
                   <motion.div
                     className="h-full rounded-full"
-                    style={{ background: 'var(--gradient-sunrise)' }}
+                    style={{ background: 'var(--gradient-luxury)' }}
                     initial={{ width: 0 }}
                     animate={{ width: `${percent}%` }}
                     transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
@@ -200,8 +198,7 @@ export default function MotivationPage() {
       {/* Achievements */}
       {achievementsData?.achievements && achievementsData.achievements.length > 0 && (
         <motion.div
-          className="rounded-3xl p-6"
-          style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+          className="glass-card luxury-border rounded-3xl p-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
@@ -214,10 +211,10 @@ export default function MotivationPage() {
               <div
                 key={a.key}
                 className="flex items-center gap-2 px-3 py-2 rounded-xl"
-                style={{ background: 'var(--color-primary-light)' }}
+                style={{ background: 'rgba(212,168,83,0.1)' }}
               >
                 <span className="text-xl">{a.icon}</span>
-                <span className="text-xs font-medium" style={{ color: 'var(--color-primary-dark)' }}>
+                <span className="text-xs font-medium" style={{ color: 'var(--color-gold)' }}>
                   {a.title}
                 </span>
               </div>

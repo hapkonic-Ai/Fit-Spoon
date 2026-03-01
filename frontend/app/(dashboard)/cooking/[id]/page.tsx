@@ -85,8 +85,8 @@ export default function CookingModePage() {
     >
       {/* Header */}
       <div
-        className="flex items-center justify-between px-4 py-3 border-b shrink-0"
-        style={{ background: 'var(--color-card)', borderColor: 'var(--color-border-light)' }}
+        className="flex items-center justify-between px-4 py-3 shrink-0 glass-card"
+        style={{ borderBottom: '1px solid var(--glass-border)' }}
       >
         <button
           onClick={() => router.back()}
@@ -107,10 +107,11 @@ export default function CookingModePage() {
         {/* Timer */}
         <button
           onClick={() => setTimerRunning((r) => !r)}
-          className="text-sm font-mono font-medium px-3 py-1 rounded-full"
+          className="text-sm font-mono font-bold px-3 py-1 rounded-full luxury-border"
           style={{
-            background: timerRunning ? 'var(--color-primary-light)' : 'var(--color-bg)',
-            color: timerRunning ? 'var(--color-primary)' : 'var(--color-text-muted)',
+            background: timerRunning ? 'rgba(212,168,83,0.15)' : 'var(--color-bg)',
+            color: timerRunning ? 'var(--color-gold)' : 'var(--color-text-muted)',
+            boxShadow: timerRunning ? 'var(--shadow-luxury)' : 'none',
           }}
         >
           {formatTime(timerSeconds)}
@@ -118,10 +119,10 @@ export default function CookingModePage() {
       </div>
 
       {/* Progress bar */}
-      <div className="h-1" style={{ background: 'var(--color-border-light)' }}>
+      <div className="h-1" style={{ background: 'rgba(212,168,83,0.15)' }}>
         <motion.div
           className="h-full"
-          style={{ background: 'var(--gradient-sunrise)' }}
+          style={{ background: 'var(--gradient-luxury)' }}
           animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
           transition={{ duration: 0.4 }}
         />
@@ -147,13 +148,13 @@ export default function CookingModePage() {
               <div className="flex items-center gap-3">
                 <span
                   className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold shrink-0"
-                  style={{ background: 'var(--gradient-sunrise)', color: 'white' }}
+                  style={{ background: 'var(--gradient-luxury)', color: 'white', boxShadow: 'var(--shadow-luxury)' }}
                 >
                   {step?.stepNumber}
                 </span>
                 <h2
-                  className="text-lg font-bold"
-                  style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+                  className="text-lg font-bold luxury-text"
+                  style={{ fontFamily: 'var(--font-display)' }}
                 >
                   Step {step?.stepNumber}
                 </h2>
@@ -161,8 +162,7 @@ export default function CookingModePage() {
 
               {/* Instruction */}
               <div
-                className="rounded-3xl p-5"
-                style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+                className="rounded-3xl p-5 glass-card luxury-border"
               >
                 <p
                   className="text-lg leading-relaxed"
@@ -208,9 +208,10 @@ export default function CookingModePage() {
                       background: completedSteps.has(s.stepNumber)
                         ? 'var(--color-success)'
                         : i === currentStep
-                        ? 'var(--color-primary)'
+                        ? 'var(--color-gold)'
                         : 'var(--color-bg)',
                       color: i === currentStep || completedSteps.has(s.stepNumber) ? 'white' : 'var(--color-text-muted)',
+                      boxShadow: i === currentStep && !completedSteps.has(s.stepNumber) ? 'var(--shadow-luxury)' : 'none',
                     }}
                   >
                     {completedSteps.has(s.stepNumber) ? '✓' : s.stepNumber}
@@ -237,7 +238,7 @@ export default function CookingModePage() {
                   You cooked <strong>{recipe.title}</strong> in {formatTime(timerSeconds)}!
                 </p>
               </div>
-              <WarmButton onClick={() => router.push('/')}>Back to Dashboard</WarmButton>
+              <WarmButton variant="gold" onClick={() => router.push('/')}>Back to Dashboard</WarmButton>
             </motion.div>
           )}
         </AnimatePresence>
@@ -246,14 +247,14 @@ export default function CookingModePage() {
       {/* Nav buttons */}
       {!allDone && (
         <div
-          className="shrink-0 flex gap-3 px-4 py-3 border-t"
-          style={{ background: 'var(--color-card)', borderColor: 'var(--color-border-light)' }}
+          className="shrink-0 flex gap-3 px-4 py-3 glass-card"
+          style={{ borderTop: '1px solid var(--glass-border)' }}
         >
           <button
             onClick={() => setCurrentStep((s) => s - 1)}
             disabled={currentStep === 0}
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-2xl text-sm font-medium transition-all disabled:opacity-40"
-            style={{ background: 'var(--color-bg)', color: 'var(--color-text-muted)' }}
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-2xl text-sm font-medium transition-all disabled:opacity-40 glass-card luxury-border"
+            style={{ color: 'var(--color-text-muted)' }}
           >
             <ChevronLeft size={18} />
             Previous
@@ -261,6 +262,7 @@ export default function CookingModePage() {
           {isLastStep ? (
             <WarmButton
               className="flex-1"
+              variant="gold"
               onClick={() => setCompletedSteps(new Set(steps.map((s) => s.stepNumber)))}
             >
               Finish Cooking 🎉
@@ -268,6 +270,7 @@ export default function CookingModePage() {
           ) : (
             <WarmButton
               className="flex-1"
+              variant="gold"
               onClick={() => setCurrentStep((s) => s + 1)}
             >
               Next Step

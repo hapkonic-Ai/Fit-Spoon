@@ -69,16 +69,15 @@ export default function SettingsPage() {
   return (
     <div className="max-w-xl mx-auto px-4 py-6 space-y-6">
       <h1
-        className="text-2xl font-bold"
-        style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+        className="text-2xl font-bold luxury-text"
+        style={{ fontFamily: 'var(--font-display)' }}
       >
         Settings ⚙️
       </h1>
 
       {/* Theme */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -91,13 +90,13 @@ export default function SettingsPage() {
               className="flex flex-col items-center gap-2 p-3 rounded-2xl border transition-all"
               style={{
                 background: t.preview,
-                borderColor: theme === t.value ? 'var(--color-primary)' : 'var(--color-border-light)',
-                boxShadow: theme === t.value ? 'var(--shadow-glow)' : 'none',
+                borderColor: theme === t.value ? 'var(--color-gold)' : 'var(--color-border-light)',
+                boxShadow: theme === t.value ? 'var(--shadow-luxury)' : 'none',
               }}
             >
               <span className="text-xs font-medium" style={{ color: '#3A2D28' }}>{t.label}</span>
               {theme === t.value && (
-                <span className="text-xs" style={{ color: 'var(--color-primary)' }}>✓ Active</span>
+                <span className="text-xs" style={{ color: 'var(--color-gold)' }}>✓ Active</span>
               )}
             </button>
           ))}
@@ -106,8 +105,7 @@ export default function SettingsPage() {
 
       {/* Preferences */}
       <motion.div
-        className="rounded-3xl p-6 space-y-5"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6 space-y-5"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -125,9 +123,9 @@ export default function SettingsPage() {
                 onClick={() => setDietary(opt.value)}
                 className="py-2 px-3 rounded-xl text-xs font-medium text-left transition-all border"
                 style={{
-                  background: dietary === opt.value ? 'var(--color-primary-light)' : 'var(--color-bg)',
-                  color: dietary === opt.value ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
-                  borderColor: dietary === opt.value ? 'var(--color-primary)' : 'var(--color-border-light)',
+                  background: dietary === opt.value ? 'rgba(212,168,83,0.15)' : 'var(--color-bg)',
+                  color: dietary === opt.value ? 'var(--color-gold)' : 'var(--color-text-muted)',
+                  borderColor: dietary === opt.value ? 'var(--color-gold)' : 'var(--color-border-light)',
                 }}
               >
                 {opt.label}
@@ -147,9 +145,9 @@ export default function SettingsPage() {
                 onClick={() => setSkill(opt.value)}
                 className="flex-1 py-2 px-2 rounded-xl text-xs font-medium transition-all border"
                 style={{
-                  background: skill === opt.value ? 'var(--color-primary-light)' : 'var(--color-bg)',
-                  color: skill === opt.value ? 'var(--color-primary-dark)' : 'var(--color-text-muted)',
-                  borderColor: skill === opt.value ? 'var(--color-primary)' : 'var(--color-border-light)',
+                  background: skill === opt.value ? 'rgba(212,168,83,0.15)' : 'var(--color-bg)',
+                  color: skill === opt.value ? 'var(--color-gold)' : 'var(--color-text-muted)',
+                  borderColor: skill === opt.value ? 'var(--color-gold)' : 'var(--color-border-light)',
                 }}
               >
                 {opt.label}
@@ -169,7 +167,7 @@ export default function SettingsPage() {
             step={50}
             value={calorieGoal}
             onChange={(e) => setCalorieGoal(Number(e.target.value))}
-            className="w-full accent-[var(--color-primary)]"
+            className="w-full accent-[var(--color-gold)]"
           />
           <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
             <span>800</span><span>4000</span>
@@ -187,8 +185,7 @@ export default function SettingsPage() {
 
       {/* Logout */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}

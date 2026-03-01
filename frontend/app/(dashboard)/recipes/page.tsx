@@ -72,7 +72,7 @@ export default function RecipesPage() {
         >
           Recipes 📖
         </h1>
-        <WarmButton size="sm" onClick={() => setShowGenerator(!showGenerator)}>
+        <WarmButton size="sm" variant="gold" onClick={() => setShowGenerator(!showGenerator)}>
           <Sparkles size={14} className="mr-1" />
           AI Generate
         </WarmButton>
@@ -85,13 +85,12 @@ export default function RecipesPage() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="rounded-3xl overflow-hidden"
-            style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+            className="rounded-3xl overflow-hidden glass-card"
           >
             <div className="p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Sparkles size={16} style={{ color: 'var(--color-primary)' }} />
+                  <Sparkles size={16} style={{ color: 'var(--color-gold)' }} />
                   <h2 className="font-semibold text-sm" style={{ color: 'var(--color-text)' }}>
                     AI Recipe Generator
                   </h2>
@@ -137,6 +136,7 @@ export default function RecipesPage() {
 
               <WarmButton
                 className="w-full"
+                variant="gold"
                 disabled={genIngredients.length < 2 || generateMutation.isPending}
                 onClick={() => generateMutation.mutate(genIngredients)}
               >
@@ -160,48 +160,50 @@ export default function RecipesPage() {
         )}
       </AnimatePresence>
 
-      {/* Search */}
-      <div className="relative">
-        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
-        <input
-          className="w-full pl-9 pr-4 py-3 rounded-2xl text-sm outline-none border"
-          style={{
-            background: 'var(--color-bg)',
-            color: 'var(--color-text)',
-            borderColor: 'var(--color-border-mid)',
-          }}
-          placeholder="Search recipes..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          aria-label="Search recipes"
-        />
-      </div>
+      {/* Search & Filters */}
+      <div className="glass-card rounded-2xl p-4 space-y-3">
+        <div className="relative">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
+          <input
+            className="w-full pl-9 pr-4 py-3 rounded-2xl text-sm outline-none border"
+            style={{
+              background: 'var(--color-bg)',
+              color: 'var(--color-text)',
+              borderColor: 'rgba(212,168,83,0.2)',
+            }}
+            placeholder="Search recipes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search recipes"
+          />
+        </div>
 
-      {/* Filters */}
-      {!searchQuery && (
-        <>
-          <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
-            {CUISINES.map((c) => (
-              <Chip
-                key={c}
-                label={c}
-                selected={selectedCuisine === c}
-                onClick={() => setSelectedCuisine(c)}
-              />
-            ))}
-          </div>
-          <div className="flex gap-2">
-            {DIFFICULTIES.map((d) => (
-              <Chip
-                key={d}
-                label={d.charAt(0).toUpperCase() + d.slice(1)}
-                selected={selectedDifficulty === d}
-                onClick={() => setSelectedDifficulty(d)}
-              />
-            ))}
-          </div>
-        </>
-      )}
+        {/* Filters */}
+        {!searchQuery && (
+          <>
+            <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+              {CUISINES.map((c) => (
+                <Chip
+                  key={c}
+                  label={c}
+                  selected={selectedCuisine === c}
+                  onClick={() => setSelectedCuisine(c)}
+                />
+              ))}
+            </div>
+            <div className="flex gap-2">
+              {DIFFICULTIES.map((d) => (
+                <Chip
+                  key={d}
+                  label={d.charAt(0).toUpperCase() + d.slice(1)}
+                  selected={selectedDifficulty === d}
+                  onClick={() => setSelectedDifficulty(d)}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
 
       {/* Recipe Grid */}
       {isLoading || isSearching ? (

@@ -73,7 +73,7 @@ export default function FridgePage() {
             onClick={() => setActiveTab(tab)}
             className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all capitalize"
             style={{
-              background: activeTab === tab ? 'var(--color-primary)' : 'var(--color-bg)',
+              background: activeTab === tab ? 'var(--color-gold)' : 'var(--color-bg)',
               color: activeTab === tab ? 'white' : 'var(--color-text-muted)',
             }}
           >
@@ -120,8 +120,7 @@ export default function FridgePage() {
           {/* Selected ingredients */}
           {ingredients.length > 0 && (
             <div
-              className="rounded-2xl p-4"
-              style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-sm)' }}
+              className="rounded-2xl p-4 glass-card"
             >
               <p className="text-xs font-medium mb-3" style={{ color: 'var(--color-text-muted)' }}>
                 Ingredients in your fridge ({ingredients.length}):
@@ -150,6 +149,7 @@ export default function FridgePage() {
           {ingredients.length >= 2 && (
             <WarmButton
               className="w-full"
+              variant="gold"
               disabled={fridgeMutation.isPending}
               onClick={() => fridgeMutation.mutate(ingredients)}
             >
@@ -170,8 +170,8 @@ export default function FridgePage() {
           className="flex flex-col items-center gap-6 py-8"
         >
           <div
-            className="w-64 h-48 rounded-3xl flex flex-col items-center justify-center gap-3 border-2 border-dashed"
-            style={{ borderColor: 'var(--color-border-mid)', background: 'var(--color-bg)' }}
+            className="w-64 h-48 rounded-3xl flex flex-col items-center justify-center gap-3 border-2 border-dashed glass-card"
+            style={{ borderColor: 'rgba(212,168,83,0.3)' }}
           >
             <Camera size={32} style={{ color: 'var(--color-text-muted)' }} />
             <p className="text-sm text-center" style={{ color: 'var(--color-text-muted)' }}>
@@ -216,8 +216,8 @@ export default function FridgePage() {
 
       {fridgeMutation.isError && (
         <div
-          className="rounded-2xl p-4 text-sm"
-          style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)' }}
+          className="rounded-2xl p-4 text-sm glass-card"
+          style={{ color: 'var(--color-primary-dark)' }}
         >
           Oops! ChefMate had trouble finding recipes. Try again in a moment! ☕
         </div>

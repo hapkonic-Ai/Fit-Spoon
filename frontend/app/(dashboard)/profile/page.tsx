@@ -63,20 +63,23 @@ export default function ProfilePage() {
   return (
     <div className="max-w-xl mx-auto px-4 py-6 space-y-6">
       <h1
-        className="text-2xl font-bold"
-        style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+        className="text-2xl font-bold luxury-text"
+        style={{ fontFamily: 'var(--font-display)' }}
       >
         Profile 👤
       </h1>
 
       {/* Avatar card */}
       <motion.div
-        className="rounded-3xl p-6 flex flex-col items-center gap-4"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6 flex flex-col items-center gap-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <ChefMateAvatar state="happy" size="xl" />
+        <div style={{ borderRadius: '50%', padding: '3px', background: 'var(--gradient-luxury)', display: 'inline-flex' }}>
+          <div style={{ borderRadius: '50%', background: 'var(--glass-bg)', padding: '2px' }}>
+            <ChefMateAvatar state="happy" size="xl" />
+          </div>
+        </div>
         <div className="text-center">
           <p className="font-bold text-lg" style={{ color: 'var(--color-text)' }}>{user?.name}</p>
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{user?.email}</p>
@@ -85,19 +88,17 @@ export default function ProfilePage() {
         {/* Stats */}
         <div className="grid grid-cols-2 gap-4 w-full">
           <div
-            className="rounded-2xl p-3 text-center"
-            style={{ background: 'var(--color-bg)' }}
+            className="glass-card rounded-2xl p-3 text-center"
           >
-            <p className="text-2xl font-bold" style={{ color: 'var(--color-primary)' }}>
+            <p className="text-2xl font-bold luxury-text">
               {streakData?.current || 0}🔥
             </p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Current Streak</p>
           </div>
           <div
-            className="rounded-2xl p-3 text-center"
-            style={{ background: 'var(--color-bg)' }}
+            className="glass-card rounded-2xl p-3 text-center"
           >
-            <p className="text-2xl font-bold" style={{ color: 'var(--color-secondary)' }}>
+            <p className="text-2xl font-bold" style={{ color: 'var(--color-gold)' }}>
               {streakData?.longest || 0}⭐
             </p>
             <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Best Streak</p>
@@ -107,8 +108,7 @@ export default function ProfilePage() {
 
       {/* Edit profile */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="glass-card luxury-border rounded-3xl p-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -140,8 +140,7 @@ export default function ProfilePage() {
       {/* Preferences summary */}
       {preferences && (
         <motion.div
-          className="rounded-3xl p-6"
-          style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+          className="glass-card luxury-border rounded-3xl p-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
@@ -160,7 +159,7 @@ export default function ProfilePage() {
               <div
                 key={item.label}
                 className="flex justify-between items-center py-2 border-b last:border-0"
-                style={{ borderColor: 'var(--color-border-light)' }}
+                style={{ borderColor: 'var(--glass-border)' }}
               >
                 <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{item.label}</span>
                 <span className="text-sm font-medium capitalize" style={{ color: 'var(--color-text)' }}>{item.value}</span>

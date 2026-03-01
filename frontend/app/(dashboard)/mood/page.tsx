@@ -44,8 +44,8 @@ export default function MoodPage() {
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-6">
       <div>
         <h1
-          className="text-2xl font-bold"
-          style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}
+          className="text-2xl font-bold luxury-text"
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           How are you feeling? 💭
         </h1>
@@ -82,11 +82,14 @@ export default function MoodPage() {
                   <motion.button
                     key={mood}
                     onClick={() => setSelectedMood(mood)}
-                    className="flex flex-col items-center gap-1 p-3 rounded-2xl transition-all border"
+                    className={`flex flex-col items-center gap-1 p-3 rounded-2xl transition-all ${isSelected ? 'luxury-border' : 'glass-card'}`}
                     style={{
-                      background: isSelected ? mc.color + '25' : 'var(--color-bg)',
-                      borderColor: isSelected ? mc.color : 'var(--color-border-light)',
-                      boxShadow: isSelected ? `0 0 0 3px ${mc.color}40` : 'none',
+                      ...(isSelected ? {
+                        background: 'var(--glass-bg)',
+                        backdropFilter: 'blur(var(--glass-blur))',
+                        boxShadow: '0 0 0 3px rgba(212,168,83,0.3), var(--shadow-glass)',
+                        borderColor: 'var(--color-gold)',
+                      } : {}),
                     }}
                     whileTap={{ scale: 0.95 }}
                     aria-pressed={isSelected}
@@ -95,7 +98,7 @@ export default function MoodPage() {
                     <span className="text-2xl">{mc.emoji}</span>
                     <span
                       className="text-xs font-medium capitalize"
-                      style={{ color: isSelected ? mc.color : 'var(--color-text-muted)' }}
+                      style={{ color: isSelected ? 'var(--color-gold)' : 'var(--color-text-muted)' }}
                     >
                       {mood}
                     </span>
@@ -109,10 +112,9 @@ export default function MoodPage() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl p-4"
-                style={{ background: config.color + '15', border: `1px solid ${config.color}30` }}
+                className="glass-card luxury-border rounded-2xl p-4"
               >
-                <p className="text-sm font-medium" style={{ color: config.color }}>
+                <p className="text-sm font-medium" style={{ color: 'var(--color-gold)' }}>
                   {config.emoji} {config.label}
                 </p>
                 <p className="text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
@@ -129,11 +131,9 @@ export default function MoodPage() {
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Add a note (optional — what's on your mind?)"
                   rows={2}
-                  className="w-full px-4 py-3 rounded-xl text-sm resize-none outline-none border"
+                  className="glass-card w-full px-4 py-3 rounded-xl text-sm resize-none outline-none"
                   style={{
-                    background: 'var(--color-bg)',
                     color: 'var(--color-text)',
-                    borderColor: 'var(--color-border-mid)',
                   }}
                   aria-label="Optional note about your mood"
                 />
@@ -160,10 +160,9 @@ export default function MoodPage() {
             </div>
 
             <div
-              className="rounded-2xl p-5"
-              style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+              className="glass-card luxury-border rounded-2xl p-5"
             >
-              <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-primary)' }}>
+              <p className="text-sm font-medium mb-1 luxury-text">
                 ChefMate's tip for you:
               </p>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>

@@ -120,10 +120,9 @@ export default function RecipeDetailPage() {
           ].map((stat) => (
             <div
               key={stat.sub}
-              className="rounded-2xl p-3 flex flex-col items-center gap-1 text-center"
-              style={{ background: 'var(--color-bg)' }}
+              className="glass-card rounded-2xl p-3 flex flex-col items-center gap-1 text-center"
             >
-              <span style={{ color: stat.color || 'var(--color-primary)' }}>{stat.icon}</span>
+              <span style={{ color: stat.color || 'var(--color-gold)' }}>{stat.icon}</span>
               <span
                 className="text-sm font-bold capitalize"
                 style={{ color: stat.color || 'var(--color-text)' }}
@@ -157,8 +156,7 @@ export default function RecipeDetailPage() {
 
         {/* Tabs */}
         <div
-          className="flex gap-1 rounded-2xl p-1"
-          style={{ background: 'var(--color-bg)' }}
+          className="flex gap-1 rounded-2xl p-1 glass-card"
         >
           {TABS.map((tab) => (
             <button
@@ -166,8 +164,8 @@ export default function RecipeDetailPage() {
               onClick={() => setActiveTab(tab)}
               className="flex-1 py-2 rounded-xl text-xs font-medium transition-all"
               style={{
-                background: activeTab === tab ? 'var(--color-card)' : 'transparent',
-                color: activeTab === tab ? 'var(--color-text)' : 'var(--color-text-muted)',
+                background: activeTab === tab ? 'rgba(212,168,83,0.15)' : 'transparent',
+                color: activeTab === tab ? 'var(--color-gold)' : 'var(--color-text-muted)',
                 boxShadow: activeTab === tab ? 'var(--shadow-sm)' : 'none',
               }}
             >
@@ -184,11 +182,11 @@ export default function RecipeDetailPage() {
                 <li
                   key={i}
                   className="flex items-center gap-3 py-2 border-b last:border-0 text-sm"
-                  style={{ borderColor: 'var(--color-border-light)' }}
+                  style={{ borderColor: 'rgba(212,168,83,0.2)' }}
                 >
                   <span
                     className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-                    style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary)' }}
+                    style={{ background: 'rgba(212,168,83,0.15)', color: 'var(--color-gold)' }}
                   >
                     {i + 1}
                   </span>
@@ -206,7 +204,7 @@ export default function RecipeDetailPage() {
                 <li key={step.stepNumber} className="flex gap-4">
                   <span
                     className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-0.5"
-                    style={{ background: 'var(--gradient-sunrise)', color: 'white' }}
+                    style={{ background: 'var(--gradient-luxury)', color: 'white' }}
                   >
                     {step.stepNumber}
                   </span>
@@ -232,7 +230,7 @@ export default function RecipeDetailPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { label: 'Calories', value: recipe.calories, unit: 'kcal', color: 'var(--color-primary)' },
+                  { label: 'Calories', value: recipe.calories, unit: 'kcal', color: 'var(--color-gold)' },
                   { label: 'Protein', value: recipe.proteinG, unit: 'g', color: '#FF8C42' },
                   { label: 'Carbs', value: recipe.carbsG, unit: 'g', color: '#FFD166' },
                   { label: 'Fat', value: recipe.fatG, unit: 'g', color: '#EF476F' },
@@ -240,8 +238,8 @@ export default function RecipeDetailPage() {
                 ].map((n) => (
                   <div
                     key={n.label}
-                    className="rounded-2xl p-3 text-center"
-                    style={{ background: 'var(--color-bg)' }}
+                    className="glass-card rounded-2xl p-3 text-center"
+                    style={{ boxShadow: 'var(--shadow-luxury)' }}
                   >
                     <p className="text-xl font-bold" style={{ color: n.color }}>{n.value}</p>
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{n.label} ({n.unit})</p>
@@ -256,8 +254,7 @@ export default function RecipeDetailPage() {
               {recipe.steps?.filter((s) => s.tip).map((step) => (
                 <div
                   key={step.stepNumber}
-                  className="flex gap-3 p-4 rounded-2xl"
-                  style={{ background: 'var(--color-primary-light)' }}
+                  className="flex gap-3 p-4 rounded-2xl glass-card"
                 >
                   <span className="text-lg">💡</span>
                   <div>
@@ -280,6 +277,7 @@ export default function RecipeDetailPage() {
         {/* Cook button */}
         <WarmButton
           className="w-full"
+          variant="gold"
           onClick={() => router.push(`/cooking/${id}`)}
         >
           Start Cooking Mode 🍳

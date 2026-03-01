@@ -95,8 +95,8 @@ export default function NutritionPage() {
 
       {/* Calorie Ring */}
       <motion.div
-        className="rounded-3xl p-6 flex flex-col items-center gap-4"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="rounded-3xl p-6 flex flex-col items-center gap-4 glass-card"
+        style={{ boxShadow: 'var(--shadow-luxury)' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -105,8 +105,8 @@ export default function NutritionPage() {
           max={calorieGoal}
           size={160}
           strokeWidth={14}
-          color="var(--color-primary)"
-          trackColor="var(--color-border-light)"
+          color="var(--color-gold)"
+          trackColor="rgba(212,168,83,0.15)"
           label={String(calories)}
           sublabel={`of ${calorieGoal} kcal`}
         />
@@ -119,8 +119,8 @@ export default function NutritionPage() {
 
       {/* Macros */}
       <motion.div
-        className="rounded-3xl p-6 space-y-4"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="rounded-3xl p-6 space-y-4 glass-card"
+        style={{ boxShadow: 'var(--shadow-luxury)' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
@@ -139,15 +139,15 @@ export default function NutritionPage() {
 
       {/* Water Tracker */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="rounded-3xl p-6 glass-card"
+        style={{ boxShadow: 'var(--shadow-luxury)' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
       >
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Droplets size={18} style={{ color: 'var(--color-primary)' }} />
+            <Droplets size={18} style={{ color: 'var(--color-gold)' }} />
             <h2 className="font-semibold text-sm" style={{ color: 'var(--color-text)' }}>Water Intake</h2>
           </div>
           <span className="text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>
@@ -162,6 +162,7 @@ export default function NutritionPage() {
                 key={i}
                 onClick={() => waterMutation.mutate(filled ? 'remove' : 'add')}
                 className="text-2xl transition-all hover:scale-110"
+                style={filled ? { filter: 'drop-shadow(0 0 6px rgba(212,168,83,0.5))' } : undefined}
                 aria-label={filled ? `Glass ${i + 1}: filled — click to remove` : `Glass ${i + 1}: empty — click to add`}
                 aria-pressed={filled}
               >
@@ -174,8 +175,8 @@ export default function NutritionPage() {
 
       {/* Meal Timeline */}
       <motion.div
-        className="rounded-3xl p-6"
-        style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-md)' }}
+        className="rounded-3xl p-6 glass-card"
+        style={{ boxShadow: 'var(--shadow-luxury)' }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -187,7 +188,7 @@ export default function NutritionPage() {
               <div
                 key={meal.id}
                 className="flex items-center justify-between py-3 border-b last:border-0"
-                style={{ borderColor: 'var(--color-border-light)' }}
+                style={{ borderColor: 'rgba(212,168,83,0.2)' }}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-xl">{MEAL_EMOJIS[meal.mealType] || '🍽️'}</span>
@@ -196,7 +197,7 @@ export default function NutritionPage() {
                     <p className="text-xs capitalize" style={{ color: 'var(--color-text-muted)' }}>{meal.mealType}</p>
                   </div>
                 </div>
-                <span className="text-sm font-semibold" style={{ color: 'var(--color-primary)' }}>
+                <span className="text-sm font-semibold" style={{ color: 'var(--color-gold)' }}>
                   {meal.calories} kcal
                 </span>
               </div>
@@ -213,8 +214,8 @@ export default function NutritionPage() {
       {showLogForm && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/40">
           <motion.div
-            className="w-full max-w-md rounded-3xl p-6"
-            style={{ background: 'var(--color-card)' }}
+            className="w-full max-w-md rounded-3xl p-6 glass-card"
+            style={{ boxShadow: 'var(--shadow-luxury)' }}
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -227,7 +228,7 @@ export default function NutritionPage() {
                   onClick={() => setForm((f) => ({ ...f, mealType: t }))}
                   className="px-3 py-1.5 rounded-full text-xs font-medium capitalize transition-all"
                   style={{
-                    background: form.mealType === t ? 'var(--color-primary)' : 'var(--color-bg)',
+                    background: form.mealType === t ? 'var(--color-gold)' : 'var(--color-bg)',
                     color: form.mealType === t ? 'white' : 'var(--color-text-muted)',
                   }}
                 >
