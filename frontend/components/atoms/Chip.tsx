@@ -26,11 +26,12 @@ export function Chip({ label, onRemove, selected, onClick, size = 'md', classNam
         base,
         sizes[size],
         selected
-          ? 'bg-[var(--color-primary)] text-white shadow-[0_4px_12px_rgba(255,140,66,0.25)]'
-          : 'bg-[var(--color-primary-light)] text-[var(--color-text-secondary)] border border-[var(--color-border-light)]',
+          ? 'bg-[var(--color-primary)] text-white'
+          : 'glass-card text-[var(--color-text-secondary)]',
         onClick && 'cursor-pointer hover:bg-[var(--color-primary)] hover:text-white',
         className
       )}
+      style={selected ? { boxShadow: 'var(--shadow-luxury)', border: '1px solid var(--color-gold)' } : undefined}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}

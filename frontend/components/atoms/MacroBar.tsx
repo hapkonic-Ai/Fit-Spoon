@@ -42,8 +42,13 @@ export function MacroBar({ label, value, max, unit = 'g', color = '#FF8C42', emo
         </span>
       </div>
       <div
-        className="h-2.5 rounded-full overflow-hidden"
-        style={{ background: 'var(--color-border-light)' }}
+        className="h-3 rounded-full overflow-hidden"
+        style={{
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid var(--glass-border)',
+        }}
         role="progressbar"
         aria-valuenow={value}
         aria-valuemax={max}
@@ -51,9 +56,17 @@ export function MacroBar({ label, value, max, unit = 'g', color = '#FF8C42', emo
       >
         <div
           ref={barRef}
-          className="h-full rounded-full"
-          style={{ backgroundColor: isComplete ? 'var(--color-success)' : color, width: '0%' }}
-        />
+          className="h-full rounded-full relative overflow-hidden"
+          style={{
+            background: isComplete
+              ? 'linear-gradient(90deg, var(--color-success), #7BC67E)'
+              : `linear-gradient(90deg, ${color}, var(--color-gold))`,
+            width: '0%',
+            boxShadow: `0 0 8px ${isComplete ? 'rgba(82,183,136,0.3)' : 'rgba(212,168,83,0.3)'}`,
+          }}
+        >
+          <span className="absolute inset-0 gold-shimmer pointer-events-none" />
+        </div>
       </div>
     </div>
   );

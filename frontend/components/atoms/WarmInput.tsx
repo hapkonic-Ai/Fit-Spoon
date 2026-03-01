@@ -34,10 +34,10 @@ export const WarmInput = forwardRef<HTMLInputElement, WarmInputProps>(
             ref={ref}
             id={inputId}
             className={cn(
-              'w-full h-11 bg-[var(--color-card)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]',
-              'border border-[var(--color-border-light)] rounded-xl px-4',
+              'w-full h-11 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]',
+              'rounded-xl px-4',
               'transition-all duration-200',
-              'focus:outline-none focus:border-[var(--color-primary)] focus:shadow-[0_0_0_3px_rgba(255,140,66,0.15)]',
+              'focus:outline-none focus:border-[var(--color-gold)] focus:shadow-[0_0_0_3px_rgba(212,168,83,0.15)]',
               'hover:border-[var(--color-border-mid)]',
               'disabled:opacity-50 disabled:cursor-not-allowed',
               error && 'border-[var(--color-error)] focus:shadow-[0_0_0_3px_rgba(239,71,111,0.15)]',
@@ -45,6 +45,12 @@ export const WarmInput = forwardRef<HTMLInputElement, WarmInputProps>(
               iconRight && 'pr-10',
               className
             )}
+            style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid var(--glass-border)',
+            }}
             {...props}
           />
           {iconRight && (

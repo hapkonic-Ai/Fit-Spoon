@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 
 interface ProgressRingProps {
   value: number;
@@ -43,6 +43,9 @@ export function ProgressRing({
   }, [offset, circumference, animate]);
 
   const center = size / 2;
+  const uid = useId();
+  const gradId = `ring-grad-${uid}`;
+  const glowId = `ring-glow-${uid}`;
 
   return (
     <div className="relative inline-flex items-center justify-center">
@@ -54,6 +57,20 @@ export function ProgressRing({
         aria-label={`${label}: ${value} of ${max}`}
         role="img"
       >
+        <defs>
+          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="var(--color-gold)" />
+            <stop offset="50%" stopColor="var(--color-primary)" />
+            <stop offset="100%" stopColor="var(--color-secondary)" />
+          </linearGradient>
+          <filter id={glowId}>
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         {/* Track */}
         <circle
           cx={center}
@@ -62,6 +79,7 @@ export function ProgressRing({
           fill="none"
           stroke={trackColor}
           strokeWidth={strokeWidth}
+          opacity={0.4}
         />
         {/* Progress */}
         <circle
@@ -70,11 +88,12 @@ export function ProgressRing({
           cy={center}
           r={radius}
           fill="none"
-          stroke={color}
+          stroke={`url(#${gradId})`}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={animate ? circumference : offset}
+          filter={`url(#${glowId})`}
         />
       </svg>
 
