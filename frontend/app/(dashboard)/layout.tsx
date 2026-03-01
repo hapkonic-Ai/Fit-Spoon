@@ -14,7 +14,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         Skip to main content
       </a>
 
-      <div className="flex min-h-screen" style={{ background: 'var(--color-bg)' }}>
+      <div className="flex min-h-screen relative" style={{ background: 'var(--color-bg)' }}>
+        {/* Subtle ambient glow orbs for luxury feel */}
+        <div
+          className="fixed top-0 right-0 w-[40vw] h-[40vh] rounded-full opacity-[0.04] blur-3xl pointer-events-none"
+          style={{ background: 'var(--color-gold)' }}
+        />
+        <div
+          className="fixed bottom-0 left-0 w-[30vw] h-[30vh] rounded-full opacity-[0.03] blur-3xl pointer-events-none"
+          style={{ background: 'var(--color-primary)' }}
+        />
         {/* Sidebar (desktop) */}
         <DashboardNav />
 

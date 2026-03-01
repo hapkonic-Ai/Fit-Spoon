@@ -29,12 +29,11 @@ export function FloatingChatButton() {
       >
         <motion.button
           onClick={() => router.push('/chat')}
-          className="relative flex items-center justify-center w-14 h-14 rounded-full shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           style={{
-            background: 'var(--gradient-sunrise)',
-            boxShadow: '0 4px 20px rgba(255,140,66,0.40)',
-            // focus ring color via CSS var
-            '--tw-ring-color': 'var(--color-primary)',
+            background: 'var(--gradient-luxury)',
+            boxShadow: 'var(--shadow-luxury), 0 4px 20px rgba(212,168,83,0.30)',
+            '--tw-ring-color': 'var(--color-gold)',
           } as React.CSSProperties}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
@@ -42,21 +41,21 @@ export function FloatingChatButton() {
         >
           <MessageCircle size={24} color="white" strokeWidth={2.5} />
 
-          {/* Pulsing ring when avatar is active */}
+          {/* Gold pulsing ring when avatar is active */}
           {isPulsing && (
             <motion.span
               className="absolute inset-0 rounded-full"
-              style={{ background: 'rgba(255,140,66,0.25)' }}
+              style={{ border: '2px solid var(--color-gold)', boxShadow: '0 0 12px rgba(212,168,83,0.4)' }}
               animate={{ scale: [1, 1.4, 1.4], opacity: [0.7, 0, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
               aria-hidden="true"
             />
           )}
 
-          {/* Unread dot — decorative for now */}
+          {/* Unread dot — gold accent */}
           <span
             className="absolute top-1 right-1 w-3 h-3 rounded-full border-2 border-white"
-            style={{ background: 'var(--color-accent)' }}
+            style={{ background: 'var(--color-gold)', boxShadow: '0 0 6px rgba(212,168,83,0.5)' }}
             aria-hidden="true"
           />
         </motion.button>

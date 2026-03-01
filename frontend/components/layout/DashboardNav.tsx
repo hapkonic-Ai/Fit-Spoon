@@ -27,10 +27,15 @@ export function DashboardNav() {
 
   return (
     <>
-      {/* Desktop Sidebar */}
+      {/* Desktop Sidebar — glass morphism */}
       <nav
         className="hidden lg:flex flex-col gap-1 w-64 h-screen sticky top-0 p-6 border-r"
-        style={{ background: 'var(--color-card)', borderColor: 'var(--color-border-light)' }}
+        style={{
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(var(--glass-blur))',
+          WebkitBackdropFilter: 'blur(var(--glass-blur))',
+          borderColor: 'var(--glass-border)',
+        }}
         aria-label="Main navigation"
       >
         {/* Logo */}
@@ -38,10 +43,10 @@ export function DashboardNav() {
           <div className="flex items-center gap-3">
             <span className="text-3xl">🍳</span>
             <div>
-              <h1 className="font-bold text-lg leading-none" style={{ color: 'var(--color-text)', fontFamily: 'var(--font-display)' }}>
+              <h1 className="font-bold text-lg leading-none luxury-text" style={{ fontFamily: 'var(--font-display)' }}>
                 ChefMate
               </h1>
-              <p className="text-xs" style={{ color: 'var(--color-primary)' }}>AI Kitchen Companion</p>
+              <p className="text-xs" style={{ color: 'var(--color-gold)' }}>AI Kitchen Companion</p>
             </div>
           </div>
         </div>
@@ -54,9 +59,14 @@ export function DashboardNav() {
             className={cn(
               'flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200',
               isActive(href)
-                ? 'text-[var(--color-primary)] bg-[var(--color-primary-light)]'
+                ? 'text-[var(--color-primary)]'
                 : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg)]'
             )}
+            style={isActive(href) ? {
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
+              boxShadow: 'var(--shadow-glass)',
+            } : undefined}
             aria-current={isActive(href) ? 'page' : undefined}
           >
             <Icon
@@ -66,21 +76,23 @@ export function DashboardNav() {
             {label}
             {isActive(href) && (
               <span
-                className="ml-auto w-1.5 h-1.5 rounded-full"
-                style={{ background: 'var(--color-primary)' }}
+                className="ml-auto w-2 h-2 rounded-full"
+                style={{ background: 'var(--color-gold)', boxShadow: '0 0 6px rgba(212,168,83,0.4)' }}
               />
             )}
           </Link>
         ))}
       </nav>
 
-      {/* Mobile Bottom Nav */}
+      {/* Mobile Bottom Nav — glass */}
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around px-2 pb-safe border-t"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around px-2 pb-safe"
         style={{
-          background: 'var(--color-card)',
-          borderColor: 'var(--color-border-light)',
-          boxShadow: '0 -4px 16px rgba(58,45,40,0.08)',
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderTop: '1px solid var(--glass-border)',
+          boxShadow: '0 -4px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.3)',
           paddingTop: '8px',
           paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
         }}
