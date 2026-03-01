@@ -70,7 +70,7 @@ export default function HomePage() {
         <motion.div
           variants={itemVariants}
           className="rounded-3xl p-6 relative overflow-hidden"
-          style={{ background: 'var(--gradient-hero)', boxShadow: 'var(--shadow-warm)' }}
+          style={{ background: 'var(--gradient-luxury)', boxShadow: 'var(--shadow-luxury)' }}
         >
           <div className="flex items-center justify-between">
             <div>
@@ -98,12 +98,7 @@ export default function HomePage() {
               <Link
                 key={mood.key}
                 href={`/mood?selected=${mood.key}`}
-                className="flex flex-col items-center gap-1 px-4 py-2.5 rounded-2xl transition-all duration-200 hover:scale-105 shrink-0"
-                style={{
-                  background: 'var(--color-card)',
-                  border: '1px solid var(--color-border-light)',
-                  boxShadow: 'var(--shadow-sm)',
-                }}
+                className="flex flex-col items-center gap-1 px-4 py-2.5 rounded-2xl transition-all duration-200 hover:scale-105 shrink-0 glass-card"
               >
                 <span className="text-2xl">{mood.emoji}</span>
                 <span className="text-xs font-medium" style={{ color: 'var(--color-text-muted)' }}>
@@ -127,8 +122,7 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex flex-col items-center gap-1.5 px-5 py-3 rounded-2xl shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                style={{ background: 'var(--color-card)', border: '1px solid var(--color-border-light)' }}
+                className="flex flex-col items-center gap-1.5 px-5 py-3 rounded-2xl shrink-0 transition-all duration-200 hover:-translate-y-0.5 glass-card"
               >
                 <span className="text-2xl">{item.icon}</span>
                 <span className="text-xs font-medium" style={{ color: 'var(--color-text-secondary)' }}>
@@ -143,8 +137,7 @@ export default function HomePage() {
         <motion.div variants={itemVariants}>
           <div className="grid grid-cols-3 gap-3" role="list" aria-label="Today's stats">
             <div
-              className="rounded-2xl p-4 flex flex-col gap-1"
-              style={{ background: 'var(--color-card)', border: '1px solid var(--color-border-light)' }}
+              className="rounded-2xl p-4 flex flex-col gap-1 glass-card"
               role="listitem"
               aria-label={`Calories: ${todayCalories} of ${calorieGoal}`}
             >
@@ -157,8 +150,7 @@ export default function HomePage() {
               </span>
             </div>
             <div
-              className="rounded-2xl p-4 flex flex-col gap-1"
-              style={{ background: 'var(--color-card)', border: '1px solid var(--color-border-light)' }}
+              className="rounded-2xl p-4 flex flex-col gap-1 glass-card"
               role="listitem"
               aria-label={`Water: ${waterGlasses} of 8 glasses`}
             >
@@ -171,12 +163,11 @@ export default function HomePage() {
               </span>
             </div>
             <div
-              className="rounded-2xl p-4 flex flex-col gap-1"
-              style={{ background: 'var(--color-card)', border: '1px solid var(--color-border-light)' }}
+              className="rounded-2xl p-4 flex flex-col gap-1 glass-card"
               role="listitem"
               aria-label="Current streak: 0 days"
             >
-              <Zap size={20} style={{ color: 'var(--color-secondary)' }} aria-hidden="true" />
+              <Zap size={20} style={{ color: 'var(--color-gold)' }} aria-hidden="true" />
               <span className="text-xl font-bold" style={{ color: 'var(--color-text)' }} aria-hidden="true">0</span>
               <span className="text-xs" style={{ color: 'var(--color-text-muted)' }} aria-hidden="true">day streak</span>
             </div>
@@ -216,8 +207,7 @@ export default function HomePage() {
         {/* ChefMate CTA */}
         <motion.div
           variants={itemVariants}
-          className="rounded-3xl p-5 flex items-center gap-4"
-          style={{ background: 'var(--color-primary-light)', border: '1px solid var(--color-border-light)' }}
+          className="rounded-3xl p-5 flex items-center gap-4 glass-card luxury-border"
         >
           <ChefMateAvatar state="happy" size="md" />
           <div className="flex-1">
@@ -229,7 +219,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link href="/chat">
-            <WarmButton size="sm">Chat</WarmButton>
+            <WarmButton variant="gold" size="sm">Chat</WarmButton>
           </Link>
         </motion.div>
       </motion.div>

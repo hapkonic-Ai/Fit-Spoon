@@ -80,10 +80,15 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-screen max-h-screen">
-      {/* Header */}
+      {/* Header — glass */}
       <div
-        className="flex items-center justify-between px-4 py-3 border-b shrink-0"
-        style={{ background: 'var(--color-card)', borderColor: 'var(--color-border-light)' }}
+        className="flex items-center justify-between px-4 py-3 shrink-0"
+        style={{
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(var(--glass-blur))',
+          WebkitBackdropFilter: 'blur(var(--glass-blur))',
+          borderBottom: '1px solid var(--glass-border)',
+        }}
       >
         <div className="flex items-center gap-3">
           <ChefMateAvatar state={avatarState} size="sm" />
@@ -98,8 +103,7 @@ export default function ChatPage() {
         </div>
         <button
           onClick={startNewConversation}
-          className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-colors"
-          style={{ background: 'var(--color-bg)', color: 'var(--color-text-muted)' }}
+          className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-colors glass-card"
         >
           <Plus size={14} />
           New Chat
@@ -130,10 +134,8 @@ export default function ChatPage() {
                   <button
                     key={reply}
                     onClick={() => sendMessage(reply)}
-                    className="text-left text-sm px-4 py-3 rounded-2xl transition-all duration-150 hover:bg-[var(--color-primary-light)] hover:border-[var(--color-primary)]"
+                    className="text-left text-sm px-4 py-3 rounded-2xl transition-all duration-150 glass-card hover:border-[var(--color-gold)]"
                     style={{
-                      background: 'var(--color-card)',
-                      border: '1px solid var(--color-border-light)',
                       color: 'var(--color-text-secondary)',
                     }}
                   >
@@ -169,17 +171,18 @@ export default function ChatPage() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Bar */}
+      {/* Input Bar — glass */}
       <div
-        className="shrink-0 border-t px-4 py-3"
-        style={{ background: 'var(--color-card)', borderColor: 'var(--color-border-light)' }}
+        className="shrink-0 px-4 py-3"
+        style={{
+          background: 'var(--glass-bg)',
+          backdropFilter: 'blur(var(--glass-blur))',
+          WebkitBackdropFilter: 'blur(var(--glass-blur))',
+          borderTop: '1px solid var(--glass-border)',
+        }}
       >
         <div
-          className="flex items-end gap-2 rounded-2xl border px-4 py-2 transition-all"
-          style={{
-            background: 'var(--color-bg)',
-            border: '1.5px solid var(--color-border-mid)',
-          }}
+          className="flex items-end gap-2 rounded-2xl px-4 py-2 transition-all glass-card"
         >
           <textarea
             ref={inputRef}
@@ -222,7 +225,7 @@ export default function ChatPage() {
               onClick={handleSend}
               disabled={!input.trim()}
               className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 hover:scale-105 disabled:opacity-40"
-              style={{ background: input.trim() ? 'var(--gradient-sunrise)' : 'var(--color-border-light)', color: 'white' }}
+              style={{ background: input.trim() ? 'var(--gradient-luxury)' : 'var(--color-border-light)', color: 'white', boxShadow: input.trim() ? '0 0 8px rgba(212,168,83,0.3)' : 'none' }}
               aria-label="Send message"
             >
               <Send size={16} />
