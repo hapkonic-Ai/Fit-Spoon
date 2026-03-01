@@ -18,10 +18,12 @@ export function RecipeCardChat({ recipe, onView, className }: RecipeCardChatProp
         className
       )}
       style={{
-        background: 'var(--color-card)',
-        border: '1px solid var(--color-border-light)',
-        borderLeft: '3px solid var(--color-primary)',
-        boxShadow: 'var(--shadow-sm)',
+        background: 'var(--glass-bg)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        border: '1px solid var(--glass-border)',
+        borderLeft: '3px solid var(--color-gold)',
+        boxShadow: 'var(--shadow-glass)',
       }}
       onClick={onView}
       role="button"

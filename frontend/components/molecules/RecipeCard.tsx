@@ -47,11 +47,19 @@ export function RecipeCard({
   return (
     <article
       className={cn(
-        'rounded-2xl overflow-hidden transition-all duration-200 cursor-pointer group',
-        'hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,140,66,0.20)]',
+        'rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer group',
+        'hover:-translate-y-1.5',
         className
       )}
-      style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-card)', border: '1px solid var(--color-border-light)' }}
+      style={{
+        background: 'var(--glass-bg)',
+        backdropFilter: 'blur(var(--glass-blur))',
+        WebkitBackdropFilter: 'blur(var(--glass-blur))',
+        boxShadow: 'var(--shadow-card)',
+        border: '1px solid var(--glass-border)',
+      }}
+      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card-hover)'; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'var(--shadow-card)'; }}
       onClick={onClick}
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
@@ -76,7 +84,13 @@ export function RecipeCard({
         {onSave && (
           <button
             className="absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-            style={{ background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)' }}
+            style={{
+              background: 'var(--glass-bg)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid var(--glass-border)',
+              boxShadow: isSaved ? 'var(--shadow-luxury)' : 'var(--shadow-glass)',
+            }}
             onClick={(e) => { e.stopPropagation(); onSave(); }}
             aria-label={isSaved ? 'Remove from saved' : 'Save recipe'}
           >
@@ -136,12 +150,21 @@ export function RecipeCard({
 
 export function RecipeCardSkeleton() {
   return (
-    <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--color-card)', boxShadow: 'var(--shadow-card)' }}>
-      <div className="h-40 skeleton" />
+    <div
+      className="rounded-2xl overflow-hidden"
+      style={{
+        background: 'var(--glass-bg)',
+        backdropFilter: 'blur(var(--glass-blur))',
+        WebkitBackdropFilter: 'blur(var(--glass-blur))',
+        boxShadow: 'var(--shadow-card)',
+        border: '1px solid var(--glass-border)',
+      }}
+    >
+      <div className="h-40 skeleton-gold" />
       <div className="p-3 flex flex-col gap-2">
-        <div className="h-4 skeleton rounded-full w-4/5" />
-        <div className="h-3 skeleton rounded-full w-2/5" />
-        <div className="h-3 skeleton rounded-full w-3/5" />
+        <div className="h-4 skeleton-gold rounded-full w-4/5" />
+        <div className="h-3 skeleton-gold rounded-full w-2/5" />
+        <div className="h-3 skeleton-gold rounded-full w-3/5" />
       </div>
     </div>
   );
