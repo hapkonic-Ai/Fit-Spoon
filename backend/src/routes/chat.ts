@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+import { streamSSE } from 'hono/streaming';
 import { zValidator } from '@hono/zod-validator';
 import { eq, asc } from 'drizzle-orm';
 import { db } from '../db/index.js';
@@ -61,18 +62,12 @@ router.post(
       content: message,
     });
 
-    // Set SSE headers
-    c.header('Content-Type', 'text/event-stream');
-    c.header('Cache-Control', 'no-cache');
-    c.header('Connection', 'keep-alive');
-    c.header('X-Accel-Buffering', 'no');
-
     let fullAssistantText = '';
     const embeddedRecipes: object[] = [];
 
-    return c.stream(async (stream) => {
+    return streamSSE(c, async (stream) => {
       const sendEvent = async (data: object) => {
-        await stream.write(`data: ${JSON.stringify(data)}\n\n`);
+        await stream.writeSSE({ data: JSON.stringify(data) });
       };
 
       await streamChatResponse(
@@ -112,7 +107,7 @@ router.post(
           await sendEvent({
             type: 'error',
             message: err.message,
-            warmMessage: 'Oops, my thinking cap fell off! 🍳 Please try again.',
+            warmMessage: 'Oops, my thinking cap fell off! Please try again.',
           });
         }
       );

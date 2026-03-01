@@ -1,4 +1,4 @@
-import { anthropic, AI_MODEL, withRetry } from './client.js';
+import { model, withRetry } from './client.js';
 import { aiQueue } from '../../lib/queue.js';
 import { Errors } from '../../lib/errors.js';
 
@@ -48,13 +48,8 @@ ${RECIPE_JSON_PROMPT}`;
 
   return aiQueue.add(() =>
     withRetry(async () => {
-      const response = await anthropic.messages.create({
-        model: AI_MODEL,
-        max_tokens: 2048,
-        messages: [{ role: 'user', content: prompt }],
-      });
-
-      const text = response.content[0].type === 'text' ? response.content[0].text : '';
+      const result = await model.generateContent(prompt);
+      const text = result.response.text();
 
       // Extract JSON from response (handle potential markdown wrapping)
       const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -83,13 +78,9 @@ Output ONLY the JSON array, no other text.`;
 
   return aiQueue.add(() =>
     withRetry(async () => {
-      const response = await anthropic.messages.create({
-        model: AI_MODEL,
-        max_tokens: 4096,
-        messages: [{ role: 'user', content: prompt }],
-      });
+      const result = await model.generateContent(prompt);
+      const text = result.response.text();
 
-      const text = response.content[0].type === 'text' ? response.content[0].text : '';
       const jsonMatch = text.match(/\[[\s\S]*\]/);
       if (!jsonMatch) throw Errors.aiError();
 

@@ -1,7 +1,8 @@
-import { anthropic, AI_MODEL } from './client.js';
+import { model } from './client.js';
 import { buildSystemPrompt } from './systemPrompt.js';
 import { aiQueue } from '../../lib/queue.js';
 import { Errors } from '../../lib/errors.js';
+import type { Content } from '@google/generative-ai';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -35,6 +36,14 @@ function parseRecipeTags(text: string): {
   return { cleanText: cleanText.trim(), recipes };
 }
 
+// Convert our chat history to Gemini's Content format
+function toGeminiHistory(history: ChatMessage[]): Content[] {
+  return history.map((msg) => ({
+    role: msg.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: msg.content }],
+  }));
+}
+
 export async function streamChatResponse(
   userMessage: string,
   history: ChatMessage[],
@@ -45,27 +54,25 @@ export async function streamChatResponse(
 ): Promise<void> {
   const systemPrompt = buildSystemPrompt(userContext);
 
-  // Build messages array (last 20 messages to stay within context)
-  const messages: ChatMessage[] = [
-    ...history.slice(-20),
-    { role: 'user', content: userMessage },
-  ];
+  // Use last 20 messages for context
+  const recentHistory = history.slice(-20);
 
   try {
     await aiQueue.add(async () => {
       let fullText = '';
 
-      const stream = await anthropic.messages.stream({
-        model: AI_MODEL,
-        max_tokens: 1024,
-        system: systemPrompt,
-        messages,
+      const chat = model.startChat({
+        history: toGeminiHistory(recentHistory),
+        systemInstruction: { role: 'user', parts: [{ text: systemPrompt }] },
       });
 
-      for await (const chunk of stream) {
-        if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
-          fullText += chunk.delta.text;
-          onChunk({ type: 'text', delta: chunk.delta.text });
+      const result = await chat.sendMessageStream(userMessage);
+
+      for await (const chunk of result.stream) {
+        const text = chunk.text();
+        if (text) {
+          fullText += text;
+          onChunk({ type: 'text', delta: text });
         }
       }
 

@@ -1,4 +1,4 @@
-export const AI_MODEL = 'claude-sonnet-4-6' as const;
+export const AI_MODEL = 'gemini-2.5-flash' as const;
 
 export const RATE_LIMITS = {
   AI_CHAT: {

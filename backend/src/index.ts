@@ -63,7 +63,7 @@ serve({ fetch: app.fetch, port }, () => {
   console.log(`\n🍳 ChefMate API running on http://localhost:${port}`);
   console.log(`🌿 Environment: ${process.env.NODE_ENV}`);
   console.log(`📡 CORS: ${process.env.CORS_ORIGIN}`);
-  console.log(`🤖 AI Model: claude-sonnet-4-6\n`);
+  console.log(`🤖 AI Model: gemini-2.0-flash\n`);
 });
 
 export default app;

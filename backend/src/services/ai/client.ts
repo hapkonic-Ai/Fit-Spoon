@@ -1,12 +1,14 @@
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Errors } from '../../lib/errors.js';
 import { AI_MODEL } from '../../lib/constants.js';
 
-export const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-  maxRetries: 3,
-  timeout: 60_000,
-});
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+  console.warn('[AI] GEMINI_API_KEY not set — AI features will fail');
+}
+
+export const genAI = new GoogleGenerativeAI(apiKey ?? '');
+export const model = genAI.getGenerativeModel({ model: AI_MODEL });
 
 export { AI_MODEL };
 
@@ -24,11 +26,11 @@ export async function withRetry<T>(
       lastError = err instanceof Error ? err : new Error(String(err));
 
       // Don't retry on auth errors
-      if (lastError.message.includes('401') || lastError.message.includes('403')) {
+      if (lastError.message.includes('API_KEY') || lastError.message.includes('403')) {
         throw Errors.aiError();
       }
 
-      // Rate limit from Anthropic — wait and retry
+      // Rate limit — wait and retry
       if (lastError.message.includes('429') && attempt < maxRetries) {
         const waitMs = Math.pow(2, attempt) * 1000 + Math.random() * 500;
         console.warn(`[AI] Rate limited, retrying in ${waitMs}ms (attempt ${attempt + 1}/${maxRetries})`);
